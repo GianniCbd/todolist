@@ -1,0 +1,39 @@
+<!-- <div class="loading" *ngIf="loading">Recupero task...</div>
+<div class="container" *ngIf="!loading">
+  <form class="form" (submit)="aggiungiAttivita()">
+    <label class="label" for="text">Lista della spesa</label>
+    <input id="text" name="text" required [(ngModel)]="nuovaAttivitaText" />
+
+    <button class="btnSend" type="submit" [disabled]="loading">Invia</button>
+  </form>
+
+  <ul class="lista">
+    <li class="li" *ngFor="let info of infos; let i = index">
+      {{ getStatoAttivita(info) }}
+      <button class="btnRemove" (click)="rimuoviAttivita(i)">aggiungi</button>
+    </li>
+  </ul>
+</div> -->
+
+<div class="loading" *ngIf="loading">Recupero task...</div>
+<div class="container" *ngIf="!loading">
+  <form class="form" (submit)="aggiungiAttivita()">
+    <label class="label" for="text">Lista della spesa</label>
+    <input
+      type="text"
+      id="text"
+      name="text"
+      required
+      [(ngModel)]="nuovaAttivitaText"
+    />
+
+    <button type="submit">Invia</button>
+  </form>
+
+  <ul class="lista">
+    <li *ngFor="let info of infos; let i = index">
+      {{ getStatoAttivita(info) }}
+      <button (click)="rimuoviAttivita(i)">Rimuovi</button>
+    </li>
+  </ul>
+</div>
