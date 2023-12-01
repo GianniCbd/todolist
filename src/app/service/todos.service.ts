@@ -5,16 +5,11 @@ import { Info } from '../models/info';
   providedIn: 'root',
 })
 export class TodosService {
-  info: Info[] = [
-    // { id: 1, text: 'Fare la spesa', completed: false },
-    // { id: 2, text: 'Studiare Angular', completed: true },
-    // { id: 3, text: 'mangiare', completed: false },
-    // { id: 4, text: 'pulire casa', completed: true },
-  ];
+  info: Info[] = [];
 
   constructor() {}
 
-  private delay(): Promise<void> {
+  delay(): Promise<void> {
     return new Promise<void>((resolve) => {
       setTimeout(() => {
         resolve();
@@ -48,20 +43,23 @@ export class TodosService {
     });
   }
 
-  modificaInfo(
+  async modificaInfo(
     id: number,
-    newText: string,
-    newCompleted: boolean
+    text: string,
+    completed: boolean
   ): Promise<void> {
-    return this.delay().then(() => {
-      const index = this.info.findIndex((info) => info.id === id);
-      if (index !== -1) {
-        this.info[index] = {
-          ...this.info[index],
-          text: newText,
-          completed: newCompleted,
-        };
+    if (completed) {
+      const completedInfo = this.info.find((info) => info.id === id);
+      if (completedInfo) {
+        this.info.push(completedInfo);
       }
-    });
+    }
+  }
+  aggiungiACompleted(info: Info): void {
+    info.completed = true;
+    this.info.push(info);
+  }
+  recuperaCompletedInfos(): Info[] {
+    return this.info;
   }
 }

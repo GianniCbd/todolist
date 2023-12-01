@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TodosService } from 'src/app/service/todos.service';
 import { Info } from 'src/app/models/info';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todos',
@@ -12,7 +13,7 @@ export class TodosComponent implements OnInit {
   nuovaAttivitaText: string = '';
   loading: boolean = false;
 
-  constructor(private todosService: TodosService) {}
+  constructor(private todosService: TodosService, private router: Router) {}
 
   async ngOnInit(): Promise<void> {
     await this.caricaInfos();
@@ -37,24 +38,10 @@ export class TodosComponent implements OnInit {
 
   async rimuoviAttivita(index: number): Promise<void> {
     this.loading = true;
-    await this.todosService.rimuoviInfo(this.infos[index].id);
+    const removedInfo = this.infos[index];
+    removedInfo.completed = true;
     this.infos.splice(index, 1);
-    this.loading = false;
-  }
-
-  async modificaAttivita(
-    index: number,
-    newText: string,
-    newCompleted: boolean
-  ): Promise<void> {
-    this.loading = true;
-    await this.todosService.modificaInfo(
-      this.infos[index].id,
-      newText,
-      newCompleted
-    );
-    this.infos[index].text = newText;
-    this.infos[index].completed = newCompleted;
+    this.todosService.aggiungiACompleted(removedInfo);
     this.loading = false;
   }
 

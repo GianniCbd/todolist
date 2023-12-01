@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodosService } from 'src/app/service/todos.service';
 import { Info } from 'src/app/models/info';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-completed',
@@ -9,10 +8,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./completed.component.scss'],
 })
 export class CompletedComponent implements OnInit {
-  constructor(
-    private todosService: TodosService,
-    private route: ActivatedRoute
-  ) {}
+  infos: Info[] = [];
+  loading = false;
 
-  ngOnInit(): void {}
+  constructor(private todosService: TodosService) {}
+
+  ngOnInit(): void {
+    this.infos = this.todosService.recuperaCompletedInfos();
+  }
 }

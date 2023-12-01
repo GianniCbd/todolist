@@ -1,1 +1,7 @@
-
+<div *ngIf="loading">Caricamento...</div>
+<div *ngIf="!loading">
+  <h2>Completed Tasks</h2>
+  <ul>
+    <li *ngFor="let info of infos">{{ info.text }}</li>
+  </ul>
+</div>
