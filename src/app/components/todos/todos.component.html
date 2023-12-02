@@ -15,14 +15,15 @@
 
   <ul class="lista">
     <li class="li" *ngFor="let info of infos; let i = index">
-      {{ getStatoAttivita(info) }}
+      <span>{{ getEmojiForFood(info.text) }} {{ getStatoAttivita(info) }}</span>
       <button
         class="btnRemove"
         routerLink="/completed"
         (click)="rimuoviAttivita(i)"
       >
-        Rimuovi
+        Aggiungi
       </button>
+      <button class="btnRemove" (click)="eliminaAttivita(i)">Elimina</button>
     </li>
   </ul>
 </div>

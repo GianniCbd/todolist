@@ -13,6 +13,46 @@ export class TodosComponent implements OnInit {
   nuovaAttivitaText: string = '';
   loading: boolean = false;
 
+  getEmojiForFood(food: string): string {
+    let emoji: string;
+
+    switch (food.toLowerCase()) {
+      case 'peperoni':
+        emoji = '🌶️';
+        break;
+      case 'melanzane':
+        emoji = '🍆';
+        break;
+      case 'patate':
+        emoji = '🥔';
+        break;
+      case 'carote':
+        emoji = '🥕 ';
+        break;
+      case 'latte':
+        emoji = '🥛';
+        break;
+      case 'burger':
+        emoji = '🍔';
+        break;
+      case 'manzo':
+        emoji = '🍖';
+        break;
+      case 'broccoli':
+        emoji = '🥦';
+        break;
+      case 'curry':
+        emoji = '🍛';
+        break;
+
+      default:
+        emoji = '❓';
+        break;
+    }
+
+    return emoji;
+  }
+
   constructor(private todosService: TodosService, private router: Router) {}
 
   async ngOnInit(): Promise<void> {
@@ -45,7 +85,15 @@ export class TodosComponent implements OnInit {
     this.loading = false;
   }
 
+  eliminaAttivita(index: number): void {
+    this.loading = true;
+
+    this.infos.splice(index, 1);
+
+    this.loading = false;
+  }
+
   getStatoAttivita(info: Info): string {
-    return info.completed ? 'Completato' : info.text;
+    return info.completed ? 'Aggiunto al carrello' : info.text;
   }
 }

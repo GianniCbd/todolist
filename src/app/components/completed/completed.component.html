@@ -1,7 +1,10 @@
 <div *ngIf="loading">Caricamento...</div>
 <div *ngIf="!loading">
-  <h2>Completed Tasks</h2>
-  <ul>
-    <li *ngFor="let info of infos">{{ info.text }}</li>
+  <h2>🥕 Aggiunti al carrello</h2>
+  <ul class="lista2">
+    <li class="li" *ngFor="let info of infos">
+      <span>{{ getEmojiForFood(info.text) }}{{ info.text }} </span>
+    </li>
   </ul>
+  <button class="back" routerLink="/todos">Ordina ancora</button>
 </div>
