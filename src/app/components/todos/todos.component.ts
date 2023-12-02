@@ -76,7 +76,8 @@ export class TodosComponent implements OnInit {
     this.loading = false;
   }
 
-  async rimuoviAttivita(index: number): Promise<void> {
+  // bottoni
+  async Attivita(index: number): Promise<void> {
     this.loading = true;
     const removedInfo = this.infos[index];
     removedInfo.completed = true;
@@ -92,6 +93,7 @@ export class TodosComponent implements OnInit {
 
     this.loading = false;
   }
+  //
 
   getStatoAttivita(info: Info): string {
     return info.completed ? 'Aggiunto al carrello' : info.text;

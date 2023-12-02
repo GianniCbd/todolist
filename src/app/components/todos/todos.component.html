@@ -8,6 +8,7 @@
       name="text"
       required
       [(ngModel)]="nuovaAttivitaText"
+      class="input-bar"
     />
 
     <button class="btnSend" type="submit">Invia</button>
@@ -16,14 +17,11 @@
   <ul class="lista">
     <li class="li" *ngFor="let info of infos; let i = index">
       <span>{{ getEmojiForFood(info.text) }} {{ getStatoAttivita(info) }}</span>
-      <button
-        class="btnRemove"
-        routerLink="/completed"
-        (click)="rimuoviAttivita(i)"
-      >
-        Aggiungi
+
+      <button class="btnRemove" routerLink="/completed" (click)="Attivita(i)">
+        🛒
       </button>
-      <button class="btnRemove" (click)="eliminaAttivita(i)">Elimina</button>
+      <button class="btnRemove2" (click)="eliminaAttivita(i)">✖</button>
     </li>
   </ul>
 </div>

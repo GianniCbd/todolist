@@ -43,18 +43,6 @@ export class TodosService {
     });
   }
 
-  async modificaInfo(
-    id: number,
-    text: string,
-    completed: boolean
-  ): Promise<void> {
-    if (completed) {
-      const completedInfo = this.info.find((info) => info.id === id);
-      if (completedInfo) {
-        this.info.push(completedInfo);
-      }
-    }
-  }
   aggiungiACompleted(info: Info): void {
     info.completed = true;
     this.info.push(info);
